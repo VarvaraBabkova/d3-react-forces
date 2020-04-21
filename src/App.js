@@ -19,6 +19,8 @@ class App extends React.Component{
           {source: 0, target: 1},
           {source: 1, target: 2},
           {source: 2, target: 3},
+          {source: 2, target: 4},
+          {source: 1, target: 4},
 
         ]
       }
@@ -48,8 +50,8 @@ class App extends React.Component{
       //    .attr("fill", 'teal');
 
       var force = d3.forceSimulation(this.dataset.nodes)
-                    .force("charge", d3.forceManyBody())
-                    .force("link", d3.forceLink(this.dataset.edges))
+                    .force("charge", d3.forceManyBody().strength(-150))
+                    .force("link", d3.forceLink(this.dataset.edges).distance(70))
                     .force("center", d3.forceCenter().x(size/2).y(size/2));
 
       var edges = svg.selectAll("line")
